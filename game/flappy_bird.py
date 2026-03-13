@@ -262,8 +262,8 @@ class FlappyBird:
             return
 
         try:
-            base_path = Path(__file__).resolve().parent.parent
-            assets_root = base_path / "Flappy_Bird_assets by kosresetr55"
+            base_path = Path(__file__).resolve().parent
+            assets_root = base_path / "assets"
             game_objects = assets_root / "Game Objects"
             ui_dir = assets_root / "UI"
             numbers_dir = ui_dir / "Numbers"
