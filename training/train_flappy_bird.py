@@ -76,35 +76,3 @@ def play_trained_model(model_path: str = "flappy_model", episodes: int = 5):
     return scores
 
 
-def main():
-    """Simple CLI for training and playing the Flappy Bird game."""
-    import sys
-
-    if len(sys.argv) == 1:
-        # Default training
-        train_flappy_bird()
-    elif sys.argv[1] == "train":
-        timesteps = int(sys.argv[2]) if len(sys.argv) > 2 else 100_000
-        render = "--render" in sys.argv
-        train_flappy_bird(timesteps, render)
-    elif sys.argv[1] == "play":
-        model_path = sys.argv[2] if len(sys.argv) > 2 else "flappy_model"
-        episodes = int(sys.argv[3]) if len(sys.argv) > 3 else 5
-        play_trained_model(model_path, episodes)
-    else:
-        print("Usage:")
-        print("  python -m training.train_flappy_bird                 # Train with defaults")
-        print("  python -m training.train_flappy_bird train 200000    # Train for 200k steps")
-        print(
-            "  python -m training.train_flappy_bird train 50000 --render  # Train with rendering"
-        )
-        print("  python -m training.train_flappy_bird play            # Watch trained model")
-        print(
-            "  python -m training.train_flappy_bird play flappy_model 3   # Watch model play 3 games"
-        )
-
-
-if __name__ == "__main__":
-    main()
-
-
