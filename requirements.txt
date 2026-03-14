@@ -1,0 +1,6 @@
+# Pip dependencies (optional if using conda + environment.yml)
+gymnasium>=0.29
+stable-baselines3>=2.0
+pygame>=2.5
+matplotlib>=3.7
+numpy>=1.24

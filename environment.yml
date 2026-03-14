@@ -1,0 +1,17 @@
+# Conda environment for Flappy Bird RL
+# Create: conda env create -f environment.yml
+# Activate: conda activate flappy-bird-rl
+
+name: flappy-bird-rl
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - pip
+  - pip:
+    - gymnasium
+    - stable-baselines3
+    - pygame
+    - matplotlib
