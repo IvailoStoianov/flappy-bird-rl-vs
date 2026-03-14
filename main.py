@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 from training.train_flappy_bird import train_flappy_bird, play_trained_model
 from game.flappy_bird import main as play_human_game
@@ -25,6 +26,23 @@ def build_parser() -> argparse.ArgumentParser:
         "--render",
         action="store_true",
         help="Render the environment while training.",
+    )
+    train_parser.add_argument(
+        "--stats-dir",
+        type=Path,
+        default=None,
+        help="Directory to save training statistics (default: training_stats/output).",
+    )
+    train_parser.add_argument(
+        "--run-name",
+        type=str,
+        default=None,
+        help="Base name for stats files (default: flappy_training_<timesteps>).",
+    )
+    train_parser.add_argument(
+        "--no-live-stats",
+        action="store_true",
+        help="Do not display training stats live; only save JSON/CSV/PNG at the end.",
     )
 
     # Watch trained agent play
@@ -58,7 +76,13 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "train":
-        train_flappy_bird(timesteps=args.timesteps, render=bool(args.render))
+        train_flappy_bird(
+            timesteps=args.timesteps,
+            render=bool(args.render),
+            stats_output_dir=args.stats_dir,
+            run_name=args.run_name,
+            stats_show_live=not args.no_live_stats,
+        )
     elif args.command == "play-agent":
         play_trained_model(model_path=args.model, episodes=args.episodes)
     elif args.command == "play-human":
